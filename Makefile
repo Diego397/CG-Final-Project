@@ -6,7 +6,7 @@ libs := -lfreeglut
 
 ifeq ($(OS), Windows_NT)
     target := $(target).exe
-    libs := $(libs) -lopengl32 -lglew32
+    libs := $(libs) -lopengl32 -lglew32 -lglu32
 else
 	libs := $(libs) -lGL -LGLEW
 endif
