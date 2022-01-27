@@ -9,8 +9,7 @@ O projeto precisa ter:
 7) capacidade de "fotografar" o cenário de qualquer posição;
 
 linux:
-sudo apt install make, freeglut3, libglew-dev, libglfw3
-make
+sudo apt install make freeglut3 libglew-dev libglfw3
 
 Windows:
 mingw32-make.exe
