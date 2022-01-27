@@ -7,3 +7,10 @@ O projeto precisa ter:
 5) cluster para aceleração do ray casting;
 6) demonstrar o uso das matrizes de transformação na composição do cenário (escala, translação, rotação, cisalhamento, reflexão);
 7) capacidade de "fotografar" o cenário de qualquer posição;
+
+linux:
+sudo apt install make, freeglut3, libglew-dev, libglfw3
+make
+
+Windows:
+mingw32-make.exe
