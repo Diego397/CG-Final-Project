@@ -2,13 +2,11 @@
 
 target := main
 
-libs := -lfreeglut
-
 ifeq ($(OS), Windows_NT)
     target := $(target).exe
-    libs := $(libs) -lopengl32 -lglew32 -lglu32
+    libs := $(libs) -lfreeglut -lopengl32 -lglew32 -lglu32
 else
-	libs := $(libs) -lGL -LGLEW
+	libs := $(libs) -LGLEW -lglut -lGL -lGLU -lm
 endif
 
 run: $(target)
