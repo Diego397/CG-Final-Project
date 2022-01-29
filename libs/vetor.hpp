@@ -1,59 +1,35 @@
-struct Ponto { double x, y, z; };
+struct ponto { double x, y, z; };
 
-class Vetor {
+class vetor {
+
 public:
-    Vetor();
+    vetor();
 
-    Vetor(double pX, double pY, double pZ);
+    vetor(double pX, double pY, double pZ);
 
     double x, y, z;
 
-    Vetor operator - () { return Vetor{-x, -y, -z}; }
+    vetor operator - ();
 
-    void operator += ( Vetor &v) {
-        x += v.x;
-        y += v.y;
-        z += v.z;
-    }
+    void operator += (vetor &v);
 };
 
-Vetor operator - (Ponto &p1,  Ponto &p2) {
-    return Vetor (p2.x - p1.x, p2.y - p1.y, p2.z - p1.z);
-}
+vetor operator - (ponto &p1,  ponto &p2);
 
-Vetor operator - (Vetor &v1,  Vetor &v2) {
-    return Vetor (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
-}
+vetor operator - (vetor &v1,  vetor &v2);
 
-Vetor operator + (Vetor &v1,  Vetor &v2) {
-    return Vetor (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
-}
+vetor operator + (vetor &v1,  vetor &v2);
 
-Vetor operator / (Vetor& dividendo,  double &divisor) {
-    return Vetor {-dividendo.x / divisor, dividendo.y / divisor, dividendo.z / divisor};
-}
+vetor operator / (vetor& dividendo,  double &divisor);
 
-Vetor operator * (Vetor &v1,  double &mult) {
-    return Vetor {v1.x * mult, v1.y * mult, v1.z * mult};
-}
+vetor operator * (vetor &v1,  double &mult);
 
-Vetor operator * (double &mult,  Vetor &v1) {
-    return v1 * mult;
-}
+vetor operator * (double &mult,  vetor &v1);
 
-// Produto escalar
-double operator * (Vetor &v1,  Vetor &v2 ) {
-    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-}
+double operator * (vetor &v1,  vetor &v2 );
 
-double operator * (Ponto &p1,  Vetor &v2 ) {
-    return p1.x * v2.x + p1.y * v2.y + p1.z * v2.z;
-}
+double operator * (ponto &p1,  vetor &v2 );
 
-double operator * (Vetor &v1, Ponto &p2 ) {
-    return p2 * v1;
-}
+double operator * (vetor &v1, ponto &p2 );
 
-Ponto operator + (Ponto &p,  Vetor &v) {
-    return Ponto {p.x + v.x, p.y + v.y, p.z + v.z};
-}
+ponto operator + (ponto &p,  vetor &v);

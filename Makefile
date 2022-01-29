@@ -12,5 +12,5 @@ endif
 run: $(target)
 	./$(target)
 
-$(target): main.cpp Makefile
-	g++ -Wall -std=c++17 -Iinclude -IGLUT/include -Llib-mingw-w64 -LGLEW/lib/Release/x64 -LGLUT/lib/x64 -o main main.cpp $(libs)
+$(target): main.cpp libs/cubo.cpp libs/malha.cpp libs/func.cpp libs/vetor.cpp Makefile
+	g++ -Wall -std=c++17 -Iinclude -IGLUT/include -Llib-mingw-w64 -LGLEW/lib/Release/x64 -LGLUT/lib/x64 -o main main.cpp libs/cubo.cpp libs/malha.cpp libs/vetor.cpp $(libs)
