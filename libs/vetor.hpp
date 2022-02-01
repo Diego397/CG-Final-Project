@@ -3,15 +3,15 @@ struct ponto { double x, y, z; };
 class vetor {
 
 public:
-    vetor();
+	vetor();
 
-    vetor(double pX, double pY, double pZ);
+	vetor(double pX, double pY, double pZ);
 
-    double x, y, z;
+	double x, y, z;
 
-    vetor operator - ();
+	vetor operator - ();
 
-    void operator += (vetor &v);
+	void operator += (vetor &v);
 };
 
 ponto operator + (ponto &p,  vetor &v);

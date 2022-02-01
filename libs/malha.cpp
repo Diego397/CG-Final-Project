@@ -1,9 +1,5 @@
 #include <GL/glut.h>
-#include <stdio.h>
-#include <iostream>
 #include <new>
-#include <math.h>
-#include <vector>
 #include "malha.hpp"
 
 int* malha::edgeToPoints(int a[2], int b[2], int c[2])

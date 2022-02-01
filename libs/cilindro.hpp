@@ -1,4 +1,4 @@
-#include <GL/glut.h>
-#include "vetor.hpp"
+// #include <GL/glut.h>
+// #include "vetor.hpp"
 
-void trio(vetor::ponto R, vetor::ponto Cb, vetor::ponto Ct);
+// void trio(vetor::ponto R, vetor::ponto Cb, vetor::ponto Ct);
