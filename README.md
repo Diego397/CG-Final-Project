@@ -13,3 +13,6 @@ sudo apt install make freeglut3 libglew-dev libglfw3
 
 Windows:
 mingw32-make.exe
+
+Duvidas:
+1) Cubo.cpp, Como usar vector de array (ponteiro)

@@ -1,5 +1,13 @@
 #include "vetor.hpp"
 
+ponto operator + (ponto &p,  vetor &v) {
+    return ponto {p.x + v.x, p.y + v.y, p.z + v.z};
+}
+
+ponto operator - (ponto &p,  vetor &v) {
+    return ponto {p.x - v.x, p.y - v.y, p.z - v.z};
+}
+
 vetor::vetor()
 {
     x = y = z = 0;
@@ -53,8 +61,4 @@ double operator * (ponto &p1,  vetor &v2 ) {
 
 double operator * (vetor &v1, ponto &p2 ) {
     return p2 * v1;
-}
-
-ponto operator + (ponto &p,  vetor &v) {
-    return ponto {p.x + v.x, p.y + v.y, p.z + v.z};
 }

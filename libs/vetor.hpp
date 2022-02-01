@@ -14,6 +14,10 @@ public:
     void operator += (vetor &v);
 };
 
+ponto operator + (ponto &p,  vetor &v);
+
+ponto operator - (ponto &p,  vetor &v);
+
 vetor operator - (ponto &p1,  ponto &p2);
 
 vetor operator - (vetor &v1,  vetor &v2);
@@ -31,5 +35,3 @@ double operator * (vetor &v1,  vetor &v2 );
 double operator * (ponto &p1,  vetor &v2 );
 
 double operator * (vetor &v1, ponto &p2 );
-
-ponto operator + (ponto &p,  vetor &v);
