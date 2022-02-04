@@ -211,6 +211,54 @@ void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 			{0.0f, 	0.0f,	0.0f, 	1.0f}
 		};
 	}
+}
 
-	else if (tipo == "G"){}
+void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos)
+{
+    GLfloat mult[4][4] = 
+    {
+        {vetUni[0]*vetUni[0], vetUni[0]*vetUni[1], vetUni[0]*vetUni[2], 0.0f},
+        {vetUni[1]*vetUni[0], vetUni[1]*vetUni[1], vetUni[1]*vetUni[2], 0.0f},
+        {vetUni[2]*vetUni[0], vetUni[2]*vetUni[1], vetUni[2]*vetUni[2], 0.0f},
+        {0.0f,   0.0f,    0.0f,    0.0f}
+    };
+
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            mult[i][j] = -2*mult[i][j];
+
+    GLfloat matInd[4][4];
+
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++) {
+            if (j == i) matInd[i][j] = 1.0f;
+            else matInd[i][j] = 0.0f;
+        }
+
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            mult[i][j] += matInd[i][j];
+    
+    GLfloat tpio[4][4] = 
+    {
+        {1.0f, 0.0f, 0.0f, -pontos[0]},
+        {0.0f, 1.0f, 0.0f, -pontos[1]},
+        {0.0f, 0.0f, 1.0f, -pontos[2]},
+        {0.0f, 0.0f, 0.0f, 1.0f}
+    };
+    
+    GLfloat topi[4][4] =
+    {
+        {1.0f, 0.0f, 0.0f, pontos[0]},
+        {0.0f, 1.0f, 0.0f, pontos[1]},
+        {0.0f, 0.0f, 1.0f, pontos[2]},
+        {0.0f, 0.0f, 0.0f, 1.0f}
+    };
+
+	GLfloat temp[4][4], E[4][4];
+
+	objeto->multiplicacao (temp, mult, tpio);
+	objeto->multiplicacao (E, topi, mult);
+
+	aplicarTrans(obj, tam, E);
 }

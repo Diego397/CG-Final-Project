@@ -23,5 +23,7 @@ class transformacoes
 	
 	void reflexao(point3 *obj, int tam, std::string tipo);
 
+    void reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos);
+
 };
 
