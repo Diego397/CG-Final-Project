@@ -14,7 +14,7 @@ void transformacoes::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
 
 		for (int j = 0; j < 3; j++)
 			vet[j][0] = obj[i][j];
-		vet[4][0] = 1.0f;
+		vet[3][0] = 1.0f;
 		
 		objeto->multiplicacao (res, T, vet);
 
@@ -215,7 +215,7 @@ void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 
 void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos)
 {
-    GLfloat mult[4][4] = 
+    GLfloat H[4][4] = 
     {
         {vetUni[0]*vetUni[0], vetUni[0]*vetUni[1], vetUni[0]*vetUni[2], 0.0f},
         {vetUni[1]*vetUni[0], vetUni[1]*vetUni[1], vetUni[1]*vetUni[2], 0.0f},
@@ -225,7 +225,7 @@ void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* po
 
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
-            mult[i][j] = -2*mult[i][j];
+            H[i][j] = -2*H[i][j];
 
     GLfloat matInd[4][4];
 
@@ -237,8 +237,9 @@ void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* po
 
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
-            mult[i][j] += matInd[i][j];
+            H[i][j] += matInd[i][j];
     
+	// matriz de translação
     GLfloat tpio[4][4] = 
     {
         {1.0f, 0.0f, 0.0f, -pontos[0]},
@@ -247,6 +248,7 @@ void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* po
         {0.0f, 0.0f, 0.0f, 1.0f}
     };
     
+	// matriz de translação reversa
     GLfloat topi[4][4] =
     {
         {1.0f, 0.0f, 0.0f, pontos[0]},
@@ -255,10 +257,7 @@ void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* po
         {0.0f, 0.0f, 0.0f, 1.0f}
     };
 
-	GLfloat temp[4][4], E[4][4];
-
-	objeto->multiplicacao (temp, mult, tpio);
-	objeto->multiplicacao (E, topi, mult);
-
-	aplicarTrans(obj, tam, E);
+	aplicarTrans (obj, tam, tpio);
+    aplicarTrans (obj, tam, H);
+	aplicarTrans (obj, tam, topi);
 }
