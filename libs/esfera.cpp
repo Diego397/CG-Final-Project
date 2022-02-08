@@ -1,82 +1,112 @@
-//
-// Created by fbeze on 24/08/2019.
-//
+#include <GL/glut.h>
+#include <tuple>
+#include <math.h>
+#include "esfera.hpp"
 
-// #ifndef COMPUTACAOGRAFICA_ESFERA_HPP
-// #define COMPUTACAOGRAFICA_ESFERA_HPP
-// #include "biblioteca.hpp"
-// #include "Objeto.hpp"
-// class Esfera : public Objeto {
-// public:
-//     string nome;
-//     float raio;
-//     Ponto* centro;
-//     Esfera(float pRaio, Ponto* pCentro, Material* material);
-//     tuple<Ponto*,Objeto*> IntersecaoReta(Ponto* pP0, const Vetor &pV0) override;
-//     Ponto* PrimeiraIntersecao(const Ponto &pP0, const Vetor &pVetor0);
-//     void mudaCoodCamera(Camera *camera) override;
-//     void mudaCoodMundo(Camera *camera) override;
-//     Vetor calcularNormal(Ponto* p) override;
-//     Objeto* aplicarEspelhamento(vector<Matriz> &pMatrizesTransf) override;
-//     void aplicarTransformacao(vector<Matriz> &pMatrizesTransf) override;
-//     Ponto* getCentro() override;
-//     tuple<Ponto, Ponto> Limites() override;
-// };
+using namespace std;
 
+const float PI = 3.14159265358979323846264338;
+const float deg60 = PI / 3.0;
 
-// #endif //COMPUTACAOGRAFICA_ESFERA_HPP
-// Esfera::Esfera(float pRaio, Ponto* pCentro) : raio(pRaio), centro(pCentro), Objeto("Esfera",false, material)  {}
-
-// tuple<Ponto*, Objeto*> Esfera::IntersecaoReta(Ponto* pP0, const Vetor &pV0){
-//     //p_t_int eh o ponto dado o t_int
-//     Ponto* p_t_int1 = nullptr;
-//     Ponto* p_t_int2 = nullptr;
-//     double t_int1, t_int2;
-
-//     // A*t_int² + B*t_int + C = 0
-
-//     Vetor pV0N = biblioteca::NormalizaVetor(pV0);
-
-//     // C0P0 eh o P0 - C0
-//     Vetor C0P0 = biblioteca::SubtracaoPontos(*this->centro, *pP0);
-
-//     // A = u*u
-//     double produtoA = biblioteca::ProdutoEscalar(pV0N,pV0N);
-
-//     // B = 2 * (P0 - C0) * u
-//     double produtoB = biblioteca::ProdutoEscalar(C0P0,pV0N);
-
-//     // C = (P0 - C0) * (P0 - C0) - R²
-//     double produtoC = biblioteca::ProdutoEscalar(C0P0,C0P0) - (this->raio*this->raio);
-
-//     /*  Δ > 0 tem 2 intersecoes
-//         Δ = 0 tem 1 intersecao
-//         Δ < 0 tem 0 intersecoes */
-
-//     double Delta = (produtoB*produtoB) - (produtoA)*(produtoC);
-
-//     if (Delta > 0){
-
-//         t_int1 = (-produtoB + sqrt(Delta))/produtoA;
-//         t_int2 = (-produtoB - sqrt(Delta))/produtoA;
-//         p_t_int1 = biblioteca::EquacaoDaReta(*pP0,t_int1,pV0N);
-//         p_t_int2 = biblioteca::EquacaoDaReta(*pP0,t_int2,pV0N);
-//         if(biblioteca::distanciaEntrePontos(p_t_int1,pP0) > biblioteca::distanciaEntrePontos(p_t_int2,pP0)) {
-//             p_t_int1 = p_t_int2;
-//         }
-//     }
-
-//     else if (Delta == 0){
-
-//         t_int1 = (-produtoB + sqrt(Delta))/produtoA;
-//         p_t_int1 = biblioteca::EquacaoDaReta(*pP0,t_int1,pV0N);
-//     }
-
-//     return make_tuple(p_t_int1, this);
-
-// }
-
-class esfera()
+float esfera::fmod_(float x, float y)
 {
-	
-};
+    float temp = floor(x / y);
+    return x - temp * y;
+}
+
+tuple<float, float, float> esfera::toRgb(float h, float s, float v)
+{
+    float c = v * s;
+    float m = v - c;
+    float x = c * (1.0 - abs(fmod_(h / deg60, 2.0) - 1.0));
+    
+    tuple<float, float, float> temp;
+    if(0.0 <= h && h < deg60)
+        temp = make_tuple(c, x, 0.0f);
+    else if(deg60 <= h && h < 2.0 * deg60)
+        temp = make_tuple(x, c, 0.0f);
+    else if(deg60 * 2.0 <= h && h <= 3.0 * deg60)
+        temp = make_tuple(0.0f, c, x);
+    else if(deg60 * 3.0 <= h && h <= 4.0 * deg60)
+        temp = make_tuple(0.0f, x, c);
+    else if(deg60 * 4.0 <= h && h <= 5.0 * deg60)
+        temp = make_tuple(x, 0.0f, c);
+    else if(deg60 * 5.0 <= h && h <= 6.0 * deg60)
+        temp = make_tuple(c, 0.0f, x);
+       
+    get<0>(temp) += m;
+    get<1>(temp) += m;
+    get<2>(temp) += m;
+
+    return temp;
+}
+
+void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
+{
+	float equatorAng = 2 * PI / nEquatorPoints;
+	float ang2 = PI / (nPoints2 + 2);
+
+	for(int i = 0; i < nEquatorPoints; ++i)
+	{
+		float theta = equatorAng * i;
+		float phi = (-PI/2) + ang2;
+
+		float xCover = cos(equatorAng * i) * cos(phi) * radius;
+		float yCover = sin(phi) * radius;
+		float zCover = sin(equatorAng * i) * cos(phi) * radius;		
+
+		float xNxtCover = cos(equatorAng * (i + 1)) * cos(phi) * radius;
+		float yNxtCover = sin(phi) * radius;
+		float zNxtCover = sin(equatorAng * (i + 1)) * cos(phi) * radius;
+
+		float r, g, b;
+
+		glBegin(GL_TRIANGLES);
+		tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
+		glColor3f(r, g, b);
+		glVertex3f(xCover, yCover, zCover);
+		glVertex3f(xNxtCover, yNxtCover, zNxtCover);
+		glVertex3f(0, -radius, 0);
+
+		tie(r, g, b) = toRgb(fmod(theta + -phi + 2 * PI, 2 * PI), 1.0, 1.0);
+		glColor3f(r, g, b);
+		glVertex3f(xCover, -yCover, zCover);
+		glVertex3f(xNxtCover, -yNxtCover, zNxtCover);
+		glVertex3f(0, radius, 0);
+		glEnd();
+
+		for(int j = 0; j < nPoints2; ++j)
+		{
+			float phi = (-PI/2) + ang2 * (j + 1);
+			float xCur = cos(theta) * cos(phi) * radius;
+			float yCur = sin(phi) * radius;
+			float zCur = sin(theta) * cos(phi) * radius;
+
+			float xNxt1 = cos(theta + equatorAng) * cos(phi) * radius;
+			float yNxt1 = sin(phi) * radius;
+			float zNxt1 = sin(theta + equatorAng) * cos(phi) * radius;
+
+			float xNxt2 = cos(theta) * cos(phi + ang2) * radius;
+			float yNxt2 = sin(phi + ang2) * radius;
+			float zNxt2 = sin(theta) * cos(phi + ang2) * radius;
+
+			float xNxt3 = cos(theta + equatorAng) * cos(phi + ang2) * radius;
+			float yNxt3 = sin(phi + ang2) * radius;
+			float zNxt3 = sin(theta + equatorAng) * cos(phi + ang2) * radius;
+
+			glBegin(GL_TRIANGLES);
+			tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
+			glColor3f(r, g, b);
+
+			glVertex3f(xCur, yCur, zCur);
+			glVertex3f(xNxt1, yNxt1, zNxt1);
+			glVertex3f(xNxt2, yNxt2, zNxt2);
+
+			glVertex3f(xNxt1, yNxt1, zNxt1);
+			glVertex3f(xNxt3, yNxt3, zNxt3);
+			glVertex3f(xNxt2, yNxt2, zNxt2);
+
+			glEnd();
+		}
+	}
+}

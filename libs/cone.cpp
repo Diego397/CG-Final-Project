@@ -20,7 +20,8 @@ void cone::desenha_cone(GLfloat centro[2],
     glColor3ub(R-40,G-40,B-40);
     glBegin(GL_QUAD_STRIP);
     angulo = 0.0;
-    while( angulo < 2*PI ) {
+    while( angulo < 2*PI )
+    {
         x = raio * cos(angulo);
         y = raio * sin(angulo);
         glVertex3f(0.0, 0.0 , altura);
@@ -35,7 +36,8 @@ void cone::desenha_cone(GLfloat centro[2],
     glColor3ub(R,G,B);
     glBegin(GL_POLYGON);
     angulo = 0.0;
-    while( angulo < 2*PI ) {
+    while( angulo < 2*PI )
+    {
         x = raio * cos(angulo);
         y = raio * sin(angulo);
         glVertex3f(x, y , 0.0);

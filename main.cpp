@@ -6,16 +6,17 @@
 #include "libs/cilindro.hpp"
 #include "libs/cone.hpp"
 #include "libs/transformacoes.hpp"
+#include "libs/esfera.hpp"
 
-float angulo = 0.0f,rotX = 1.0,rotY = 0.0f,rotZ = 0.0f,velocidade = -1.00;
+float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 1.00;
 int w,h;
 
 GLuint texid1;
 
 malha cubo;
-
 cone cone1;
 cilindro cilindro1;
+esfera esfera1;
 
 GLfloat centro_cone[] = {-3.0, -3.0};
 
@@ -36,15 +37,20 @@ void DesenhaNaTela(void)
 
 	glRotatef(angulo,rotX, rotY, rotZ);
 
-	cubo.colorCube();
+	// cubo.colorCube();
+
+    // glTranslatef(2.0,-0.2,-1.0);
+
+    // cone1.desenha_cone(centro_cone, 0.3, 1.0, 100, 80, 100);
+
+    // glTranslatef(3.0,-0.4,-3.0);
+
+    // cilindro1.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
+
+    esfera1.desenha_esfera(1, 50, 50);
 
     glTranslatef(2.0,-0.2,-1.0);
 
-    cone1.desenha_cone(centro_cone, 0.3, 1.0, 100, 80, 100);
-
-    glTranslatef(3.0,-0.4,-3.0);
-
-    cilindro1.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
 
 	angulo+=velocidade;
 
