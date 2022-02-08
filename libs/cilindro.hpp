@@ -1,4 +1,13 @@
-// #include <GL/glut.h>
-// #include "vetor.hpp"
+ #include <GL/glut.h>
 
-// void trio(vetor::ponto R, vetor::ponto Cb, vetor::ponto Ct);
+class cilindro
+{
+public:
+    void desenha_cilindro(
+                          GLfloat radius,
+                          GLfloat height,
+                          GLubyte R,
+                          GLubyte G,
+                          GLubyte B);
+
+};
