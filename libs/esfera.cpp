@@ -57,8 +57,6 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		float cosThetaNxt = cos(theta + equatorAng);
 		float sinThetaNxt = sin(theta + equatorAng);
 
-
-
 		float xCover = cosTheta * cos(phi) * radius;
 		float yCover = sin(phi) * radius;
 		float zCover = sinTheta * cos(phi) * radius;		
@@ -68,7 +66,6 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		float zNxtCover = sinThetaNxt * cos(phi) * radius;
 
 		float r, g, b;
-
 
 		glBegin(GL_TRIANGLES);
 		//Cor da tampa de baixo

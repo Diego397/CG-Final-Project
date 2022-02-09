@@ -2,6 +2,8 @@
 #include <new>
 #include "malha.hpp"
 
+typedef GLfloat point3[3];
+
 int* malha::edgeToPoints(int a[2], int b[2], int c[2])
 {
 	int *vertices = new int[3];
@@ -52,4 +54,9 @@ void malha::colorCube()
 
 	triangulo(arestas[11], arestas[17], arestas[7], 5); // z-
 	triangulo(arestas[3], arestas[8], arestas[17], 5); // z-
+}
+
+point3 *malha::getVertices()
+{
+	return vertices;
 }

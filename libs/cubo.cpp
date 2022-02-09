@@ -1,6 +1,8 @@
 #include <GL/glut.h>
 #include "cubo.hpp"
 
+typedef GLfloat point3[3];
+
 void cubo::quad(int a, int b, int c, int d)
 {
 	glBegin(GL_QUADS);
@@ -23,4 +25,9 @@ void cubo::colorCube()
 	quad(4, 0, 3, 7); // x-
 	quad(6, 5, 4, 7); // y-
 	quad(7, 3, 2, 6); // z-
+}
+
+point3 *cubo::getVertices()
+{
+	return vertices;
 }

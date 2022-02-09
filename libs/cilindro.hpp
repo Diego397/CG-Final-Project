@@ -3,11 +3,6 @@
 class cilindro
 {
 public:
-    void desenha_cilindro(
-                          GLfloat radius,
-                          GLfloat height,
-                          GLubyte R,
-                          GLubyte G,
-                          GLubyte B);
+    void desenha_cilindro(GLfloat radius, GLfloat height, GLubyte R, GLubyte G, GLubyte B);
 
 };

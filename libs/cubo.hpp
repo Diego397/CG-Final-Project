@@ -1,10 +1,11 @@
 #include <GL/glut.h>
 
+
 class cubo 
 {
+	typedef GLfloat point3[3];
 	private:
 
-	typedef GLfloat point3[3];
 	point3 vertices[8] = 
 	{
 		{-1.0, 1.0, 1.0}, {1.0, 1.0, 1.0},
@@ -26,4 +27,6 @@ class cubo
 	public:
 	
 	void colorCube();
+	
+	point3 *getVertices();
 };

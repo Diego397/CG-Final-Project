@@ -48,4 +48,5 @@ class malha
 	public:
 	
 	void colorCube();
+	point3 *getVertices();
 };

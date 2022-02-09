@@ -17,11 +17,14 @@ malha cubo;
 cone cone1;
 cilindro cilindro1;
 esfera esfera1;
+transformacoes transf;
 
 GLfloat centro_cone[] = {-3.0, -3.0};
+typedef GLfloat point3[3];
 
 void DesenhaNaTela(void)
 {
+
 
 	//colocaImagem();
 
@@ -47,10 +50,9 @@ void DesenhaNaTela(void)
 
     // cilindro1.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
 
-    esfera1.desenha_esfera(1, 50, 50);
+    esfera1.desenha_esfera(3, 5, 5);
 
-    glTranslatef(2.0,-0.2,-1.0);
-
+	// cubo.colorCube();
 
 	angulo+=velocidade;
 
@@ -166,10 +168,13 @@ void AlteraTamanhoTela(int w, int h) {
 
 int main(int argc, char** argv)
 {
+	point3 *obj = cubo.getVertices();
+	transf.escala(obj, 8, 0.5, 0.5, 0.5);
+	
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(320*3,240*3);
-	glutInitWindowPosition(100*3,100*3);
+	glutInitWindowSize(160*10,90*10);
+	glutInitWindowPosition(100,100);
 	glutCreateWindow("Cubo 3D");
 	Inicializa();
 	glutDisplayFunc(DesenhaNaTela);
