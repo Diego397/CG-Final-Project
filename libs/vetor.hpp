@@ -1,3 +1,5 @@
+#include <cmath>
+
 struct ponto { double x, y, z; };
 
 class vetor {
@@ -37,3 +39,7 @@ double operator * (ponto &p1,  vetor &v2 );
 double operator * (vetor &v1, ponto &p2 );
 
 vetor produtoVetorial (vetor &v1,  vetor &v2);
+
+double norma (vetor &v);
+
+vetor normalizar (vetor &v);

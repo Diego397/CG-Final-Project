@@ -1,4 +1,5 @@
 #include "vetor.hpp"
+#include <cmath>
 
 ponto operator + (ponto &p,  vetor &v) {
 	return ponto {p.x + v.x, p.y + v.y, p.z + v.z};
@@ -39,7 +40,7 @@ vetor operator + (vetor &v1,  vetor &v2) {
 }
 
 vetor operator / (vetor& dividendo,  double &divisor) {
-	return vetor {-dividendo.x / divisor, dividendo.y / divisor, dividendo.z / divisor};
+	return vetor {dividendo.x / divisor, dividendo.y / divisor, dividendo.z / divisor};
 }
 
 vetor operator * (vetor &v1,  double &mult) {
@@ -70,4 +71,15 @@ vetor produtoVetorial (vetor &v1,  vetor &v2)
 		v1.z*v2.x - v1.x*v2.z, 
 		v1.x*v2.y - v1.y*v2.x 
 	};
+}
+
+double norma (vetor &v)
+{
+	return sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2));
+}
+
+vetor normalizar (vetor &v)
+{
+	double norm = norma(v);
+	return v / norm;
 }
