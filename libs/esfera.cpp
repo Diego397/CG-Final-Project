@@ -51,23 +51,33 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		float theta = equatorAng * i;
 		float phi = (-PI/2) + ang2;
 
-		float xCover = cos(equatorAng * i) * cos(phi) * radius;
-		float yCover = sin(phi) * radius;
-		float zCover = sin(equatorAng * i) * cos(phi) * radius;		
+		float cosTheta = cos(theta);
+		float sinTheta = sin(theta);
 
-		float xNxtCover = cos(equatorAng * (i + 1)) * cos(phi) * radius;
+		float cosThetaNxt = cos(theta + equatorAng);
+		float sinThetaNxt = sin(theta + equatorAng);
+
+
+
+		float xCover = cosTheta * cos(phi) * radius;
+		float yCover = sin(phi) * radius;
+		float zCover = sinTheta * cos(phi) * radius;		
+
+		float xNxtCover = cosThetaNxt * cos(phi) * radius;
 		float yNxtCover = sin(phi) * radius;
-		float zNxtCover = sin(equatorAng * (i + 1)) * cos(phi) * radius;
+		float zNxtCover = sinThetaNxt * cos(phi) * radius;
 
 		float r, g, b;
 
+
 		glBegin(GL_TRIANGLES);
+		//Cor da tampa de baixo
 		tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
 		glColor3f(r, g, b);
 		glVertex3f(xCover, yCover, zCover);
 		glVertex3f(xNxtCover, yNxtCover, zNxtCover);
 		glVertex3f(0, -radius, 0);
-
+		//Cod da tampa de cima
 		tie(r, g, b) = toRgb(fmod(theta + -phi + 2 * PI, 2 * PI), 1.0, 1.0);
 		glColor3f(r, g, b);
 		glVertex3f(xCover, -yCover, zCover);
@@ -78,23 +88,29 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		for(int j = 0; j < nPoints2; ++j)
 		{
 			float phi = (-PI/2) + ang2 * (j + 1);
-			float xCur = cos(theta) * cos(phi) * radius;
-			float yCur = sin(phi) * radius;
-			float zCur = sin(theta) * cos(phi) * radius;
 
-			float xNxt1 = cos(theta + equatorAng) * cos(phi) * radius;
-			float yNxt1 = sin(phi) * radius;
-			float zNxt1 = sin(theta + equatorAng) * cos(phi) * radius;
+			float cosPhi = cos(phi);
+			float cosPhiNxt = cos(phi + ang2);
+			float sinPhi = sin(phi);
 
-			float xNxt2 = cos(theta) * cos(phi + ang2) * radius;
+			float xCur = cosTheta * cosPhi * radius;
+			float yCur = sinPhi * radius;
+			float zCur = sinTheta * cosPhi * radius;
+
+			float xNxt1 = cosThetaNxt * cosPhi * radius;
+			float yNxt1 = sinPhi * radius;
+			float zNxt1 = sinThetaNxt * cosPhi * radius;
+
+			float xNxt2 = cosTheta * cosPhiNxt * radius;
 			float yNxt2 = sin(phi + ang2) * radius;
-			float zNxt2 = sin(theta) * cos(phi + ang2) * radius;
+			float zNxt2 = sinTheta * cosPhiNxt * radius;
 
-			float xNxt3 = cos(theta + equatorAng) * cos(phi + ang2) * radius;
+			float xNxt3 = cosThetaNxt * cosPhiNxt * radius;
 			float yNxt3 = sin(phi + ang2) * radius;
-			float zNxt3 = sin(theta + equatorAng) * cos(phi + ang2) * radius;
+			float zNxt3 = sinThetaNxt * cosPhiNxt * radius;
 
 			glBegin(GL_TRIANGLES);
+			//cor do meio
 			tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
 			glColor3f(r, g, b);
 

@@ -8,7 +8,7 @@
 #include "libs/transformacoes.hpp"
 #include "libs/esfera.hpp"
 
-float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 1.00;
+float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 0.00;
 int w,h;
 
 GLuint texid1;
