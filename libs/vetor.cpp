@@ -62,3 +62,12 @@ double operator * (ponto &p1,  vetor &v2 ) {
 double operator * (vetor &v1, ponto &p2 ) {
 	return p2 * v1;
 }
+
+vetor produtoVetorial (vetor &v1,  vetor &v2)
+{
+	return { 
+		v1.y*v2.z - v1.z*v2.y, 
+		v1.z*v2.x - v1.x*v2.z, 
+		v1.x*v2.y - v1.y*v2.x 
+	};
+}
