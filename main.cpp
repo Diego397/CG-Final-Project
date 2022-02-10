@@ -7,6 +7,8 @@
 #include "libs/cone.hpp"
 #include "libs/transformacoes.hpp"
 #include "libs/esfera.hpp"
+#include "libs/luz.hpp"
+#include "libs/material.hpp"
 
 float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 0.00;
 int w,h;
@@ -18,14 +20,14 @@ cone cone1;
 cilindro cilindro1;
 esfera esfera1;
 transformacoes transf;
+luz luz1;
+material material1;
 
 GLfloat centro_cone[] = {-3.0, -3.0};
 typedef GLfloat point3[3];
 
 void DesenhaNaTela(void)
 {
-
-
 	//colocaImagem();
 
 	// Clear Color and Depth Buffers
@@ -50,19 +52,29 @@ void DesenhaNaTela(void)
 
     // cilindro1.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
 
-    esfera1.desenha_esfera(3, 5, 5);
 
-	// cubo.colorCube();
+	material1.setMaterial(0);
 
-	angulo+=velocidade;
+	cubo.colorCube();
+	
+	// glDisable(GL_LIGHTING);
+
+	material1.setMaterial(1);
+    esfera1.desenha_esfera(3, 20, 20);
+
+	// cilindro1.desenha_cilindro(0.3, 1.0, 255, 160, 100);
+
+
+	angulo += velocidade;
 
 	glutSwapBuffers();
 }
 
 void Inicializa (void)
 {
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glEnable(GL_DEPTH_TEST);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	luz1.setLuz();
+	glEnable(GL_DEPTH_TEST);
 }
 
 void Teclado(unsigned char key, int x, int y)
@@ -113,38 +125,38 @@ void TeclaEspeciais(int key, int x, int y)
 		if(velocidade > 0)velocidade *= -1;
 }
 
-// void CliqueMouse(int button, int state, int x, int y)
-// {
-// 	if(button == GLUT_LEFT_BUTTON)
-// 	{
-// 		if(state == GLUT_DOWN)
-// 			printf("Clicou com o botão esquerdo na Posição  X : %i Y : %i \n",x,y);
+/*void CliqueMouse(int button, int state, int x, int y)
+{
+	if(button == GLUT_LEFT_BUTTON)
+	{
+		if(state == GLUT_DOWN)
+			printf("Clicou com o botão esquerdo na Posição  X : %i Y : %i \n",x,y);
 		
-// 		else if (state == GLUT_UP)
-// 			printf("Soltou Botão esquerdo\n");
-// 	}
-// 	else if(button == GLUT_RIGHT_BUTTON)
-// 	{
-// 		if(state == GLUT_DOWN)
-// 			printf("Clicou com o botão direito na Posição  X : %i Y : %i \n",x,y);
+		else if (state == GLUT_UP)
+			printf("Soltou Botão esquerdo\n");
+	}
+	else if(button == GLUT_RIGHT_BUTTON)
+	{
+		if(state == GLUT_DOWN)
+			printf("Clicou com o botão direito na Posição  X : %i Y : %i \n",x,y);
 
-// 		else if(state == GLUT_UP)
-// 			printf("Soltou Botão direito\n");
-// 	}
-// 	else if (button == GLUT_MIDDLE_BUTTON)
-// 	{
-// 		if(state == GLUT_DOWN)
-// 			printf("Clicou com o botão do meio na Posição  X : %i Y : %i \n",x,y);
+		else if(state == GLUT_UP)
+			printf("Soltou Botão direito\n");
+	}
+	else if (button == GLUT_MIDDLE_BUTTON)
+	{
+		if(state == GLUT_DOWN)
+			printf("Clicou com o botão do meio na Posição  X : %i Y : %i \n",x,y);
 
-// 		else if(state == GLUT_UP)
-// 			printf("Soltou Botão do meio\n");
-// 	}
-// }
+		else if(state == GLUT_UP)
+			printf("Soltou Botão do meio\n");
+	}
+}
 
-// void MovimentoMouse (int x,int y) 
-// {
-// 	printf("Mouse na Posição  X : %i Y : %i \n",x,y);
-// }
+void MovimentoMouse (int x,int y) 
+{
+	printf("Mouse na Posição  X : %i Y : %i \n",x,y);
+}*/
 
 void AlteraTamanhoTela(int w, int h) {
 
@@ -169,12 +181,14 @@ void AlteraTamanhoTela(int w, int h) {
 int main(int argc, char** argv)
 {
 	point3 *obj = cubo.getVertices();
-	transf.escala(obj, 8, 0.5, 0.5, 0.5);
-	
+	transf.translacao(obj, 8, 2, 0, 0);
+	transf.escala(obj, 8, 2, 2, 2);
+
+
 	glutInit(&argc,argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(160*10,90*10);
-	glutInitWindowPosition(100,100);
+	glutInitWindowSize(160*7, 90*7);
+	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Cubo 3D");
 	Inicializa();
 	glutDisplayFunc(DesenhaNaTela);

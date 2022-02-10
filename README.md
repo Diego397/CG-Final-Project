@@ -1,7 +1,7 @@
 # CG-Final-Project
 O projeto precisa ter:
 1) objetos distintos; OK
-2) múltiplos materiais; -Diego
+2) múltiplos materiais; -Diego OK
 3) múltiplas fontes de luz (pontual, spot, direcional, ambiente); -Marcus -Josue -Diego
 4) sombra;
 5) cluster para aceleração do ray casting;

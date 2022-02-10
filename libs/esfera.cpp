@@ -69,14 +69,14 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 
 		glBegin(GL_TRIANGLES);
 		//Cor da tampa de baixo
-		tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
-		glColor3f(r, g, b);
+		// tie(r, g, b) = toRgb(1.0, 1.0, 1.0);
+		// glColor3f(r, g, b);
 		glVertex3f(xCover, yCover, zCover);
 		glVertex3f(xNxtCover, yNxtCover, zNxtCover);
 		glVertex3f(0, -radius, 0);
 		//Cod da tampa de cima
-		tie(r, g, b) = toRgb(fmod(theta + -phi + 2 * PI, 2 * PI), 1.0, 1.0);
-		glColor3f(r, g, b);
+		// tie(r, g, b) = toRgb(1.0, 1.0, 1.0);
+		// glColor3f(r, g, b);
 		glVertex3f(xCover, -yCover, zCover);
 		glVertex3f(xNxtCover, -yNxtCover, zNxtCover);
 		glVertex3f(0, radius, 0);
@@ -108,8 +108,8 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 
 			glBegin(GL_TRIANGLES);
 			//cor do meio
-			tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
-			glColor3f(r, g, b);
+			// tie(r, g, b) = toRgb(fmod(theta + phi + 2 * PI, 2 * PI), 1.0, 1.0);
+			// glColor3f(r, g, b);
 
 			glVertex3f(xCur, yCur, zCur);
 			glVertex3f(xNxt1, yNxt1, zNxt1);
