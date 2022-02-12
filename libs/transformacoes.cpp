@@ -183,7 +183,7 @@ void Transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 	}
 }
 
-/*void Transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
+void Transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 {
 	if (tipo == "XY")
 	{
@@ -194,6 +194,7 @@ void Transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 			{0.0f, 	0.0f,	-1.0f,   0.0f},
 			{0.0f, 	0.0f,	0.0f, 	1.0f}
 		};
+		aplicarTrans (obj, tam, T);
 	}
 
 	else if (tipo == "XZ")
@@ -205,6 +206,7 @@ void Transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 			{0.0f, 	0.0f,	1.0f,   0.0f},
 			{0.0f, 	0.0f,	0.0f, 	1.0f}
 		};
+		aplicarTrans (obj, tam, T);
 	}
 	else if (tipo == "YZ")
 	{
@@ -215,9 +217,9 @@ void Transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 			{0.0f, 	0.0f,	1.0f,   0.0f},
 			{0.0f, 	0.0f,	0.0f, 	1.0f}
 		};
+		aplicarTrans (obj, tam, T);
 	}
-	aplicarTrans (obj, tam, T);
-}*/
+}
 
 void Transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos)
 {
