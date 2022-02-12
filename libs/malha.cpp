@@ -1,10 +1,10 @@
 #include <GL/glut.h>
 #include <new>
-#include "malha.hpp"
+#include "Malha.hpp"
 
 typedef GLfloat point3[3];
 
-int* malha::edgeToPoints(int a[2], int b[2], int c[2])
+int* Malha::edgeToPoints(int a[2], int b[2], int c[2])
 {
 	int *vertices = new int[3];
 	int pa, pb, pc;
@@ -19,7 +19,7 @@ int* malha::edgeToPoints(int a[2], int b[2], int c[2])
 	return vertices;
 }
 
-void malha::triangulo(int a[2], int b[2], int c[2], int cor)
+void Malha::triangulo(int a[2], int b[2], int c[2], int cor)
 {
 	int *pontos;
 
@@ -35,7 +35,7 @@ void malha::triangulo(int a[2], int b[2], int c[2], int cor)
 	glEnd();
 }
 
-void malha::colorCube()
+void Malha::colorCube()
 {
 	triangulo(arestas[6], arestas[10], arestas[2], 0); // x+
 	triangulo(arestas[12], arestas[2], arestas[11], 0); // x+
@@ -56,7 +56,7 @@ void malha::colorCube()
 	triangulo(arestas[3], arestas[8], arestas[17], 5); // z-
 }
 
-point3 *malha::getVertices()
+point3 *Malha::getVertices()
 {
 	return vertices;
 }

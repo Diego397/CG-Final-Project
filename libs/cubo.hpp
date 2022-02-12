@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 
 
-class cubo 
+class Cubo 
 {
 	typedef GLfloat point3[3];
 	private:

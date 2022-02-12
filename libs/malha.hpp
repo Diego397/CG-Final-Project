@@ -6,7 +6,7 @@
 #include <math.h>
 #include <vector>
 
-class malha 
+class Malha 
 {
 	private:
 

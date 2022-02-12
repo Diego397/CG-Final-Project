@@ -1,20 +1,20 @@
 #include <GL/glut.h>
 #include <tuple>
 #include <math.h>
-#include "esfera.hpp"
+#include "Esfera.hpp"
 
 using namespace std;
 
 const float PI = 3.14159265358979323846264338;
 const float deg60 = PI / 3.0;
 
-float esfera::fmod_(float x, float y)
+float Esfera::fmod_(float x, float y)
 {
     float temp = floor(x / y);
     return x - temp * y;
 }
 
-tuple<float, float, float> esfera::toRgb(float h, float s, float v)
+tuple<float, float, float> Esfera::toRgb(float h, float s, float v)
 {
     float c = v * s;
     float m = v - c;
@@ -41,7 +41,7 @@ tuple<float, float, float> esfera::toRgb(float h, float s, float v)
     return temp;
 }
 
-void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
+void Esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 {
 	float equatorAng = 2 * PI / nEquatorPoints;
 	float ang2 = PI / (nPoints2 + 2);
@@ -65,7 +65,7 @@ void esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		float yNxtCover = sin(phi) * radius;
 		float zNxtCover = sinThetaNxt * cos(phi) * radius;
 
-		float r, g, b;
+		// float r, g, b;
 
 		glBegin(GL_TRIANGLES);
 		//Cor da tampa de baixo

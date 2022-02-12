@@ -1,12 +1,12 @@
 #include <GL/glut.h>
 #include <cmath>
 #include <string>
-#include "transformacoes.hpp"
+#include "Transformacoes.hpp"
 #include "matriz.hpp"
 
 matriz *objeto;
 
-void transformacoes::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
+void Transformacoes::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
 {
 	for(int i = 0; i < tam; ++i)
 	{
@@ -23,7 +23,7 @@ void transformacoes::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
 	}
 }
 
-void transformacoes::escala(point3 *obj, int tam, GLfloat sx, GLfloat sy, GLfloat sz)
+void Transformacoes::escala(point3 *obj, int tam, GLfloat sx, GLfloat sy, GLfloat sz)
 {
 	GLfloat T[4][4] = 
 	{
@@ -36,7 +36,7 @@ void transformacoes::escala(point3 *obj, int tam, GLfloat sx, GLfloat sy, GLfloa
 	aplicarTrans (obj, tam, T);
 }
 
-void transformacoes::translacao(point3 *obj, int tam, GLfloat tx, GLfloat ty, GLfloat tz) 
+void Transformacoes::translacao(point3 *obj, int tam, GLfloat tx, GLfloat ty, GLfloat tz) 
 {
 	GLfloat T[4][4] = 
 	{
@@ -49,7 +49,7 @@ void transformacoes::translacao(point3 *obj, int tam, GLfloat tx, GLfloat ty, GL
 	aplicarTrans (obj, tam, T);
 }
 
-void transformacoes::rotacao(point3 *obj, int tam, double angulo, char tipo)
+void Transformacoes::rotacao(point3 *obj, int tam, double angulo, char tipo)
 {
 	float C = cos(angulo);
 	float S = sin(angulo);
@@ -113,7 +113,7 @@ void transformacoes::rotacao(point3 *obj, int tam, double angulo, char tipo)
 	// }
 }
 
-void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std::string plano)
+void Transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std::string plano)
 {	
 	if(plano == "XZ"){
 		if(tipo == 'X'){
@@ -134,6 +134,7 @@ void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 				{0.0f, 	0.0f, 	1.0f, 	0.0f},
 				{0.0f,	0.0f, 	0.0f, 	1.0f}
 			};
+			aplicarTrans (obj, tam, T);
 		}
 		else
 		{
@@ -144,6 +145,7 @@ void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 				{0.0f, 	tg,	    1.0f,   0.0f},
 				{0.0f, 	0.0f,	0.0f, 	1.0f}
 			};
+			aplicarTrans (obj, tam, T);
 		}
 	}
 	else if(plano == "XY"){
@@ -155,6 +157,7 @@ void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 			// 	{0.0f, 	0.0f,	1.0f, 	0.0f},
 			// 	{0.0f, 	0.0f,	0.0f, 	1.0f}
 			// };
+			// aplicarTrans (obj, tam, T);
 		}
 		else if(tipo == 'Y'){
 			GLfloat T[4][4] = 
@@ -164,6 +167,7 @@ void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 				{0.0f, 	0.0f, 	1.0f, 	0.0f},
 				{0.0f,	0.0f, 	0.0f, 	1.0f}
 			};
+			aplicarTrans (obj, tam, T);
 		}
 		else
 		{
@@ -174,15 +178,16 @@ void transformacoes::cisalhamento(point3 *obj, int tam, float tg, char tipo, std
 				{0.0f, 	tg,	    1.0f,   0.0f},
 				{0.0f, 	0.0f,	0.0f, 	1.0f}
 			};
+			aplicarTrans (obj, tam, T);
 		}
 	}
 }
 
-void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
+/*void Transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 {
 	if (tipo == "XY")
 	{
-		GLfloat Exy[4][4] = 
+		GLfloat T[4][4] = 
 		{
 			{1.0f,	0.0f,	0.0f,	0.0f},
 			{0.0f, 	1.0f,	0.0f,	0.0f},
@@ -193,7 +198,7 @@ void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 
 	else if (tipo == "XZ")
 	{
-		GLfloat Exz[4][4] = 
+		GLfloat T[4][4] = 
 		{
 			{1.0f,	0.0f,	0.0f,	0.0f},
 			{0.0f, 	-1.0f,	0.0f,	0.0f},
@@ -203,7 +208,7 @@ void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 	}
 	else if (tipo == "YZ")
 	{
-		GLfloat Eyz[4][4] = 
+		GLfloat T[4][4] = 
 		{
 			{-1.0f,	0.0f,	0.0f,	0.0f},
 			{0.0f, 	1.0f,	0.0f,	0.0f},
@@ -211,9 +216,10 @@ void transformacoes::reflexao(point3 *obj, int tam, std::string tipo)
 			{0.0f, 	0.0f,	0.0f, 	1.0f}
 		};
 	}
-}
+	aplicarTrans (obj, tam, T);
+}*/
 
-void transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos)
+void Transformacoes::reflexao(point3 *obj, int tam, GLfloat* vetUni, GLfloat* pontos)
 {
     GLfloat H[4][4] = 
     {

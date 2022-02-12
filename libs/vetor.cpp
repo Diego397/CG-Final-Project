@@ -1,70 +1,70 @@
-#include "vetor.hpp"
+#include "Vetor.hpp"
 #include <cmath>
 
-ponto operator + (ponto &p,  vetor &v) {
-	return ponto {p.x + v.x, p.y + v.y, p.z + v.z};
+Ponto operator + (Ponto &p,  Vetor &v) {
+	return Ponto {p.x + v.x, p.y + v.y, p.z + v.z};
 }
 
-ponto operator - (ponto &p,  vetor &v) {
-	return ponto {p.x - v.x, p.y - v.y, p.z - v.z};
+Ponto operator - (Ponto &p,  Vetor &v) {
+	return Ponto {p.x - v.x, p.y - v.y, p.z - v.z};
 }
 
-vetor::vetor()
+Vetor::Vetor()
 {
 	x = y = z = 0;
 }
 
-vetor::vetor(double px, double py, double pz)
+Vetor::Vetor(double px, double py, double pz)
 {
 	x = px, y = py, z = pz;
 }
 
-vetor vetor::operator - () { return vetor{-x, -y, -z}; }
+Vetor Vetor::operator - () { return Vetor{-x, -y, -z}; }
 
-void vetor::operator += ( vetor &v) {
+void Vetor::operator += ( Vetor &v) {
 	x += v.x;
 	y += v.y;
 	z += v.z;
 }
 
-vetor operator - (ponto &p1,  ponto &p2) {
-	return vetor (p2.x - p1.x, p2.y - p1.y, p2.z - p1.z);
+Vetor operator - (Ponto &p1,  Ponto &p2) {
+	return Vetor (p2.x - p1.x, p2.y - p1.y, p2.z - p1.z);
 }
 
-vetor operator - (vetor &v1,  vetor &v2) {
-	return vetor (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+Vetor operator - (Vetor &v1,  Vetor &v2) {
+	return Vetor (v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
 }
 
-vetor operator + (vetor &v1,  vetor &v2) {
-	return vetor (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+Vetor operator + (Vetor &v1,  Vetor &v2) {
+	return Vetor (v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
 }
 
-vetor operator / (vetor& dividendo,  double &divisor) {
-	return vetor {dividendo.x / divisor, dividendo.y / divisor, dividendo.z / divisor};
+Vetor operator / (Vetor& dividendo,  double &divisor) {
+	return Vetor {dividendo.x / divisor, dividendo.y / divisor, dividendo.z / divisor};
 }
 
-vetor operator * (vetor &v1,  double &mult) {
-	return vetor {v1.x * mult, v1.y * mult, v1.z * mult};
+Vetor operator * (Vetor &v1,  double &mult) {
+	return Vetor {v1.x * mult, v1.y * mult, v1.z * mult};
 }
 
-vetor operator * (double &mult,  vetor &v1) {
+Vetor operator * (double &mult,  Vetor &v1) {
 	return v1 * mult;
 }
 
 // Produto escalar
-double operator * (vetor &v1,  vetor &v2 ) {
+double operator * (Vetor &v1,  Vetor &v2 ) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
-double operator * (ponto &p1,  vetor &v2 ) {
+double operator * (Ponto &p1,  Vetor &v2 ) {
 	return p1.x * v2.x + p1.y * v2.y + p1.z * v2.z;
 }
 
-double operator * (vetor &v1, ponto &p2 ) {
+double operator * (Vetor &v1, Ponto &p2 ) {
 	return p2 * v1;
 }
 
-vetor produtoVetorial (vetor &v1,  vetor &v2)
+Vetor produtoVetorial (Vetor &v1,  Vetor &v2)
 {
 	return { 
 		v1.y*v2.z - v1.z*v2.y, 
@@ -73,12 +73,12 @@ vetor produtoVetorial (vetor &v1,  vetor &v2)
 	};
 }
 
-double norma (vetor &v)
+double norma (Vetor &v)
 {
 	return sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2));
 }
 
-vetor normalizar (vetor &v)
+Vetor normalizar (Vetor &v)
 {
 	double norm = norma(v);
 	return v / norm;

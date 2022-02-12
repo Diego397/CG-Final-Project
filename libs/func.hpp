@@ -1,7 +1,7 @@
 #include "vetor.hpp"
 
-class func
+class Func
 {
 	public:
-	vetor produtoVetorial (vetor &v1, vetor &v2);
+	Vetor produtoVetorial (Vetor &v1, Vetor &v2);
 };

@@ -2,7 +2,7 @@
 #include <string>
 #include <cmath>
 
-class transformacoes 
+class Transformacoes 
 {
 	public:
 	

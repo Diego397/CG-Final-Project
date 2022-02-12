@@ -13,4 +13,4 @@ run: $(target)
 	./$(target)
 
 $(target): main.cpp libs/*.cpp libs/*.hpp Makefile
-	g++ -Wall -std=c++17 -Iinclude -IGLUT/include -Llib-mingw-w64 -LGLEW/lib/Release/x64 -LGLUT/lib/x64 -o main main.cpp libs/cubo.cpp  libs/malha.cpp libs/vetor.cpp libs/cilindro.cpp libs/cone.cpp libs/matriz.cpp libs/transformacoes.cpp libs/esfera.cpp libs/luz.cpp libs/material.cpp $(libs)
+	g++ -Wall -std=c++17 -Iinclude -IGLUT/include -Llib-mingw-w64 -LGLEW/lib/Release/x64 -LGLUT/lib/x64 -o main main.cpp libs/Cubo.cpp  libs/Malha.cpp libs/Vetor.cpp libs/Cilindro.cpp libs/Cone.cpp libs/Matriz.cpp libs/Transformacoes.cpp libs/Esfera.cpp libs/Luz.cpp libs/Material.cpp $(libs)

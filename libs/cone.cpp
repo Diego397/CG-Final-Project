@@ -1,17 +1,17 @@
 #include <GL/glut.h>
-#include "cone.hpp"
+#include "Cone.hpp"
 #include <math.h>
 
 const float PI = 3.14159265358979323846264338;
 
-void cone::desenha_cone(GLfloat centro[2], GLfloat raio, GLfloat altura, GLubyte R, GLubyte G, GLubyte B)
+void Cone::desenha_cone(GLfloat centro[2], GLfloat raio, GLfloat altura, GLubyte R, GLubyte G, GLubyte B)
 {
 	GLfloat x               = 0.0;
 	GLfloat y               = 0.0;
 	GLfloat angulo          = 0.0;
 	GLfloat angulo_step     = 0.1;
 
-	/** Desenha o tronco do cone */
+	/** Desenha o tronco do Cone */
 	glColor3ub(R-40,G-40,B-40);
 	glBegin(GL_QUAD_STRIP);
 	angulo = 0.0;
@@ -27,7 +27,7 @@ void cone::desenha_cone(GLfloat centro[2], GLfloat raio, GLfloat altura, GLubyte
 	glVertex3f(raio, 0.0, 0.0);
 	glEnd();
 
-	/** Desenha a base do cone */
+	/** Desenha a base do Cone */
 	glColor3ub(R,G,B);
 	glBegin(GL_POLYGON);
 	angulo = 0.0;

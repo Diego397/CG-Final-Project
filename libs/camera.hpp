@@ -1,13 +1,13 @@
 #include <GL/glut.h>
-#include "vetor.hpp"
+#include "Vetor.hpp"
 
-class camera
+class Camera
 {
 public:
 
-	camera() {}
+	Camera() {}
 
-	camera(
+	Camera(
 		GLfloat tex, GLfloat tey, GLfloat tez,
 		GLfloat tpx, GLfloat tpy, GLfloat tpz,
 		GLfloat tvx, GLfloat tvy, GLfloat tvz 
@@ -22,24 +22,24 @@ private:
 	GLfloat px{0.0f}, py{0.0f}, pz{0.0f}; // Point of interest (LookAt)
 	GLfloat vx{0.0f}, vy{0.0f}, vz{0.0f}; // view up
 
-	ponto eye = {ex, ey, ez};
-	ponto lat = {px, py, pz};
-	ponto vupP = {vx, vy, vz};
+	Ponto eye = {ex, ey, ez};
+	Ponto lat = {px, py, pz};
+	Ponto vupP = {vx, vy, vz};
 
 	// determinando o eixo z
-	vetor zeixo = eye - lat;
-	vetor kunit = normalizar(zeixo);
+	Vetor zeixo = eye - lat;
+	Vetor kunit = normalizar(zeixo);
 
 	// determinando o eixo x
-	vetor vup = vupP - eye;
-	vetor xeixo = produtoVetorial(vup, kunit);
-	vetor iunit = normalizar(xeixo);
+	Vetor vup = vupP - eye;
+	Vetor xeixo = produtoVetorial(vup, kunit);
+	Vetor iunit = normalizar(xeixo);
 
 	// determinando o eixo y
-	vetor junit = produtoVetorial(kunit, iunit);
+	Vetor junit = produtoVetorial(kunit, iunit);
 
-	// vetor da posicao da camera
-	vetor E {ex, ey, ez};
+	// Vetor da posicao da Camera
+	Vetor E {ex, ey, ez};
 
 	GLfloat mwtc[4][4] = 
 	{
@@ -51,8 +51,4 @@ private:
 
 public:
 
-	// GLfloat **getMatriz()
-	// {
-	// 	return mwtc;
-	// }
 };

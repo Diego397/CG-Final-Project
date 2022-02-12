@@ -1,27 +1,27 @@
 #include <GL/glut.h>
 #include <stdlib.h>
-#include "libs/malha.hpp"
-#include "libs/cubo.hpp"
-#include "libs/func.hpp"
-#include "libs/cilindro.hpp"
-#include "libs/cone.hpp"
-#include "libs/transformacoes.hpp"
-#include "libs/esfera.hpp"
-#include "libs/luz.hpp"
-#include "libs/material.hpp"
+#include "libs/Malha.hpp"
+#include "libs/Cubo.hpp"
+#include "libs/Func.hpp"
+#include "libs/Cilindro.hpp"
+#include "libs/Cone.hpp"
+#include "libs/Transformacoes.hpp"
+#include "libs/Esfera.hpp"
+#include "libs/Luz.hpp"
+#include "libs/Material.hpp"
 
 float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 0.00;
 int w,h;
 
 GLuint texid1;
 
-malha cubo;
-cone cone1;
-cilindro cilindro1;
-esfera esfera1;
-transformacoes transf;
-luz luz1;
-material material1;
+Malha cubo;
+Cone cone;
+Cilindro cilindro;
+Esfera esfera;
+Transformacoes transf;
+Luz luz;
+Material material;
 
 GLfloat centro_cone[] = {-3.0, -3.0};
 typedef GLfloat point3[3];
@@ -46,23 +46,23 @@ void DesenhaNaTela(void)
 
     // glTranslatef(2.0,-0.2,-1.0);
 
-    // cone1.desenha_cone(centro_cone, 0.3, 1.0, 100, 80, 100);
+    // cone.desenha_cone(centro_cone, 0.3, 1.0, 100, 80, 100);
 
     // glTranslatef(3.0,-0.4,-3.0);
 
-    // cilindro1.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
+    // cilindro.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
 
 
-	material1.setMaterial(0);
+	material.setMaterial(0);
 
 	cubo.colorCube();
 	
 	// glDisable(GL_LIGHTING);
 
-	material1.setMaterial(1);
-    esfera1.desenha_esfera(3, 20, 20);
+	material.setMaterial(1);
+    esfera.desenha_esfera(3, 20, 20);
 
-	// cilindro1.desenha_cilindro(0.3, 1.0, 255, 160, 100);
+	// cilindro.desenha_cilindro(0.3, 1.0, 255, 160, 100);
 
 
 	angulo += velocidade;
@@ -73,7 +73,7 @@ void DesenhaNaTela(void)
 void Inicializa (void)
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	luz1.setLuz();
+	luz.setLuz();
 	glEnable(GL_DEPTH_TEST);
 }
 

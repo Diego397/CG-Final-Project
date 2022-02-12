@@ -1,6 +1,6 @@
 #include <GL/glut.h>
 
-class material
+class Material
 {
 private:
 	/*

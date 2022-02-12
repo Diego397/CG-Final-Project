@@ -1,45 +1,45 @@
 #include <cmath>
 
-struct ponto { double x, y, z; };
+struct Ponto { double x, y, z; };
 
-class vetor {
+class Vetor {
 
 public:
-	vetor();
+	Vetor();
 
-	vetor(double pX, double pY, double pZ);
+	Vetor(double pX, double pY, double pZ);
 
 	double x, y, z;
 
-	vetor operator - ();
+	Vetor operator - ();
 
-	void operator += (vetor &v);
+	void operator += (Vetor &v);
 };
 
-ponto operator + (ponto &p,  vetor &v);
+Ponto operator + (Ponto &p,  Vetor &v);
 
-ponto operator - (ponto &p,  vetor &v);
+Ponto operator - (Ponto &p,  Vetor &v);
 
-vetor operator - (ponto &p1,  ponto &p2);
+Vetor operator - (Ponto &p1,  Ponto &p2);
 
-vetor operator - (vetor &v1,  vetor &v2);
+Vetor operator - (Vetor &v1,  Vetor &v2);
 
-vetor operator + (vetor &v1,  vetor &v2);
+Vetor operator + (Vetor &v1,  Vetor &v2);
 
-vetor operator / (vetor& dividendo,  double &divisor);
+Vetor operator / (Vetor& dividendo,  double &divisor);
 
-vetor operator * (vetor &v1,  double &mult);
+Vetor operator * (Vetor &v1,  double &mult);
 
-vetor operator * (double &mult,  vetor &v1);
+Vetor operator * (double &mult,  Vetor &v1);
 
-double operator * (vetor &v1,  vetor &v2 );
+double operator * (Vetor &v1,  Vetor &v2 );
 
-double operator * (ponto &p1,  vetor &v2 );
+double operator * (Ponto &p1,  Vetor &v2 );
 
-double operator * (vetor &v1, ponto &p2 );
+double operator * (Vetor &v1, Ponto &p2 );
 
-vetor produtoVetorial (vetor &v1,  vetor &v2);
+Vetor produtoVetorial (Vetor &v1,  Vetor &v2);
 
-double norma (vetor &v);
+double norma (Vetor &v);
 
-vetor normalizar (vetor &v);
+Vetor normalizar (Vetor &v);

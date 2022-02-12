@@ -1,7 +1,7 @@
 #include <GL/glut.h>
-#include "luz.hpp"
+#include "Luz.hpp"
 
-void luz::setLuz()
+void Luz::setLuz()
 {
 	glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);

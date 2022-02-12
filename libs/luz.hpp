@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-class luz
+class Luz
 {
 private:
 

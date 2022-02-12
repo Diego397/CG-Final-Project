@@ -1,7 +1,7 @@
 #include <GL/glut.h>
-#include "material.hpp"
+#include "Material.hpp"
 
-void material::setMaterial(int i)
+void Material::setMaterial(int i)
 {
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient[i]);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse[i]);
