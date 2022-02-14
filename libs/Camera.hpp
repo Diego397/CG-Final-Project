@@ -1,6 +1,5 @@
 #include <GL/glut.h>
 #include "Vetor.hpp"
-#include "Transformacoes.hpp"
 
 class Camera
 {
@@ -20,4 +19,5 @@ private:
 public:
 
 	void mudaCamera(point3 *obj, int tam);
+	void aplicarTrans (point3 *obj, int tam, GLfloat T[4][4]);
 };

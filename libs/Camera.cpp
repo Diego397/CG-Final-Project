@@ -1,7 +1,9 @@
 #include <GL/glut.h>
 #include "Vetor.hpp"
-#include "Transformacoes.hpp"
 #include "Camera.hpp"
+#include "Matriz.hpp"
+
+matriz *objeto;
 
 Camera::Camera( float ex, float ey, float ez, float px, float py, float pz, float vx, float vy, float vz) 
     : ex(ex), ey(ey), ez(ez),
@@ -40,7 +42,24 @@ Camera::Camera( float ex, float ey, float ez, float px, float py, float pz, floa
 	// };
 }
 
+void Camera::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
+{
+	for(int i = 0; i < tam; ++i)
+	{
+		GLfloat vet[4][1], res[4][1];
+
+		for (int j = 0; j < 3; j++)
+			vet[j][0] = obj[i][j];
+		vet[3][0] = 1.0f;
+		
+		objeto->multiplicacao (res, T, vet);
+
+		for (int j = 0; j < 3; j++)
+			obj[i][j] = res[j][0];
+	}
+}
+
 void Camera::mudaCamera(point3 *obj, int tam)
 {
-    Transformacoes::aplicarTrans(obj, tam, mwtc);
+    Camera::aplicarTrans(obj, tam, mwtc);
 }
