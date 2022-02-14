@@ -1,12 +1,14 @@
 #include <GL/glut.h>
 #include <tuple>
 #include <math.h>
+#include <vector>
 #include "Esfera.hpp"
 
 using namespace std;
 
 const float PI = 3.14159265358979323846264338;
 const float deg60 = PI / 3.0;
+typedef vector<tuple<float, float, float>> tuple_vec;
 
 float Esfera::fmod_(float x, float y)
 {
@@ -60,10 +62,14 @@ void Esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 		float xCover = cosTheta * cos(phi) * radius;
 		float yCover = sin(phi) * radius;
 		float zCover = sinTheta * cos(phi) * radius;		
+		
+		vec.push_back(tuple<float, float, float>(xCover, yCover, zCover));
 
 		float xNxtCover = cosThetaNxt * cos(phi) * radius;
 		float yNxtCover = sin(phi) * radius;
 		float zNxtCover = sinThetaNxt * cos(phi) * radius;
+
+		vec.push_back(tuple<float, float, float>(xNxtCover, yNxtCover, zNxtCover));
 
 		// float r, g, b;
 
@@ -94,17 +100,25 @@ void Esfera::desenha_esfera(float radius, int nEquatorPoints, int nPoints2)
 			float yCur = sinPhi * radius;
 			float zCur = sinTheta * cosPhi * radius;
 
+			vec.push_back(tuple<float, float, float>(xCur, yCur, zCur));
+
 			float xNxt1 = cosThetaNxt * cosPhi * radius;
 			float yNxt1 = sinPhi * radius;
 			float zNxt1 = sinThetaNxt * cosPhi * radius;
 
+			vec.push_back(tuple<float, float, float>(xNxt1, yNxt1, zNxt1));
+		
 			float xNxt2 = cosTheta * cosPhiNxt * radius;
 			float yNxt2 = sin(phi + ang2) * radius;
 			float zNxt2 = sinTheta * cosPhiNxt * radius;
 
+			vec.push_back(tuple<float, float, float>(xNxt2, yNxt2, zNxt2));
+
 			float xNxt3 = cosThetaNxt * cosPhiNxt * radius;
 			float yNxt3 = sin(phi + ang2) * radius;
 			float zNxt3 = sinThetaNxt * cosPhiNxt * radius;
+
+			vec.push_back(tuple<float, float, float>(xNxt3, yNxt3, zNxt3));
 
 			glBegin(GL_TRIANGLES);
 			//cor do meio
