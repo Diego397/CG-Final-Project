@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-#include "matriz.hpp"
+#include "Matriz.hpp"
 
 void matriz::multiplicacao (GLfloat product[4][1], GLfloat aMatrix[4][4], GLfloat bMatrix[4][1]) 
 {

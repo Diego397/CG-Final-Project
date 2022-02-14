@@ -2,7 +2,7 @@
 #include <cmath>
 #include <string>
 #include "Transformacoes.hpp"
-#include "matriz.hpp"
+#include "Matriz.hpp"
 
 matriz *objeto;
 
