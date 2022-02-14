@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include "libs/Malha.hpp"
 #include "libs/Cubo.hpp"
-#include "libs/Func.hpp"
 #include "libs/Cilindro.hpp"
 #include "libs/Cone.hpp"
 #include "libs/Transformacoes.hpp"
 #include "libs/Esfera.hpp"
 #include "libs/Luz.hpp"
 #include "libs/Material.hpp"
+#include "libs/Camera.hpp"
 
 float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 0.00;
 int w,h;
@@ -39,6 +39,10 @@ void DesenhaNaTela(void)
 	gluLookAt(  0.0f, 0.0f, 10.0f,
 				0.0f, 0.0f,  0.0f,
 				0.0f, 1.0f,  0.0f);
+
+	// Camera camera(0.0f, 0.0f, 10.0f,
+	//  			0.0f, 0.0f,  0.0f,
+	//  			0.0f, 1.0f,  0.0f);
 
 	glRotatef(angulo,rotX, rotY, rotZ);
 
