@@ -1,10 +1,36 @@
 #include <GL/glut.h>
 #include <cmath>
 #include <string>
+#include <vector>
+#include <tuple>
+
 #include "Transformacoes.hpp"
 #include "Matriz.hpp"
 
+using namespace std;
+
+typedef vector<tuple<float, float, float>> tuple_vec;
+
 matriz *objeto;
+
+void Transformacoes::aplicarTrans (tuple_vec& obj, GLfloat T[4][4])
+{
+	for(int i = 0; i < obj.size(); ++i)
+	{
+		GLfloat vet[4][1], res[4][1];
+
+		vet[0][0] = get<0>(obj[i]);
+		vet[1][0] = get<1>(obj[i]);
+		vet[2][0] = get<2>(obj[i]);
+		vet[3][0] = 1.0f;
+		
+		objeto->multiplicacao (res, T, vet);
+
+		get<0>(obj[i]) = res[0][0];
+		get<1>(obj[i]) = res[1][0];
+		get<2>(obj[i]) = res[2][0];
+	}
+}
 
 void Transformacoes::aplicarTrans (point3 *obj, int tam, GLfloat T[4][4])
 {
@@ -47,6 +73,19 @@ void Transformacoes::translacao(point3 *obj, int tam, GLfloat tx, GLfloat ty, GL
 	};
 
 	aplicarTrans (obj, tam, T);
+}
+
+void Transformacoes::translacao(tuple_vec &obj, GLfloat tx, GLfloat ty, GLfloat tz) 
+{
+	GLfloat T[4][4] = 
+	{
+		{1.0f, 0.0f, 0.0f, tx},
+		{0.0f, 1.0f, 0.0f, ty},
+		{0.0f, 0.0f, 1.0f, tz},
+		{0.0f, 0.0f, 0.0f, 1.0f}
+	};
+
+	aplicarTrans (obj, T);
 }
 
 void Transformacoes::rotacao(point3 *obj, int tam, double angulo, char tipo)

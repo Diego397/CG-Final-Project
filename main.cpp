@@ -43,9 +43,9 @@ void DesenhaNaTela(void)
 				0.0f, 0.0f,  0.0f,
 				0.0f, 1.0f,  0.0f);
 
-	// Camera camera(0.0f, 0.0f, 10.0f,
+	// Camera camera{0.0f, 0.0f, 10.0f,
 	//  			0.0f, 0.0f,  0.0f,
-	//  			0.0f, 1.0f,  0.0f);
+	//  			0.0f, 1.0f,  0.0f};
 
 	glRotatef(angulo,rotX, rotY, rotZ);
 
@@ -57,16 +57,19 @@ void DesenhaNaTela(void)
 
     // glTranslatef(3.0,-0.4,-3.0);
 
-    cilindro.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
+    //cilindro.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
 
 	material.setMaterial(0);
 
+	//camera.mudaCamera(cubo.getVertices(), 8);
+
 	cubo.colorCube();
+
 	
 	// glDisable(GL_LIGHTING);
 
 	//material.setMaterial(1);
-    //esfera.desenha_esfera(3, 20, 20);
+    esfera.desenha_esfera(3, 20, 20);
 
 	// cilindro.desenha_cilindro(0.3, 1.0, 255, 160, 100);
 
@@ -190,6 +193,8 @@ int main(int argc, char** argv)
 	point3 *obj = cubo.getVertices();
 	transf.translacao(obj, 8, 2, 0, 0);
 	transf.escala(obj, 8, 2, 2, 2);
+
+	// transf.translacao(esfera.getVertices(), 3.0f, 3.0f, 3.0f);
 
 
 	glutInit(&argc,argv);
