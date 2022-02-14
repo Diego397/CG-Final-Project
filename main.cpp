@@ -10,6 +10,8 @@
 #include "libs/Luz.hpp"
 #include "libs/Material.hpp"
 
+typedef vector<tuple<float, float, float>> tuple_vec;
+
 float angulo = 0.0f, rotX = 1.0, rotY = 0.0f, rotZ = 0.0f, velocidade = 0.00;
 int w,h;
 
@@ -51,7 +53,6 @@ void DesenhaNaTela(void)
     // glTranslatef(3.0,-0.4,-3.0);
 
     cilindro.desenha_cilindro( 0.3, 1.0, 255, 160, 100);
-
 
 	material.setMaterial(0);
 
@@ -180,6 +181,7 @@ void AlteraTamanhoTela(int w, int h) {
 
 int main(int argc, char** argv)
 {
+	
 	point3 *obj = cubo.getVertices();
 	transf.translacao(obj, 8, 2, 0, 0);
 	transf.escala(obj, 8, 2, 2, 2);
