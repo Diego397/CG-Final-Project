@@ -43,9 +43,9 @@ void DesenhaNaTela(void)
 				0.0f, 0.0f,  0.0f,
 				0.0f, 1.0f,  0.0f);
 
-	// Camera camera{0.0f, 0.0f, 10.0f,
-	//  			0.0f, 0.0f,  0.0f,
-	//  			0.0f, 1.0f,  0.0f};
+	Camera camera(0.0f, 0.0f, 10.0f,
+	 			0.0f, 0.0f,  0.0f,
+	 			0.0f, 1.0f, 0.0f);
 
 	glRotatef(angulo,rotX, rotY, rotZ);
 

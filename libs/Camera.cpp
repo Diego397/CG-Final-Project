@@ -5,7 +5,9 @@
 
 matriz *objeto;
 
-Camera::Camera( float ex, float ey, float ez, float px, float py, float pz, float vx, float vy, float vz) 
+Camera::Camera(float ex, float ey, float ez, 
+			   float px, float py, float pz, 
+			   float vx, float vy, float vz) 
     : ex(ex), ey(ey), ez(ez),
 	  px(px), py(py), pz(pz),
 	  vx(vx), vy(vy), vz(vz) 
@@ -14,6 +16,11 @@ Camera::Camera( float ex, float ey, float ez, float px, float py, float pz, floa
 	Ponto lat = {px, py, pz};
 	Ponto vupP = {vx, vy, vz};
 
+	Camera::constroiMatriz(eye, lat, vupP);
+}
+
+void Camera::constroiMatriz(Ponto eye, Ponto lat, Ponto vupP)
+{
 	// determinando o eixo z
 	Vetor zeixo = eye - lat;
 	Vetor kunit = normalizar(zeixo);

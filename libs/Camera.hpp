@@ -7,7 +7,8 @@ public:
 
 	typedef float point3[3];
 
-	explicit Camera( float ex, float ey, float ez, float px, float py, float pz, float vx, float vy, float vz);
+	Camera();
+	Camera(float ex, float ey, float ez, float px, float py, float pz, float vx, float vy, float vz);
 	
 private:
 
@@ -17,6 +18,7 @@ private:
 	float mwtc[4][4];
 
 	void aplicarTrans (point3 *obj, int tam, GLfloat T[4][4]);
+	void constroiMatriz(Ponto eye, Ponto lat, Ponto vupP);
 
 public:
 
