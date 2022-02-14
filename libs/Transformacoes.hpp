@@ -9,7 +9,7 @@ class Transformacoes
 	typedef GLfloat point4[4];
 	typedef GLfloat point3[3];
 
-	void aplicarTrans (point3 *obj, int tam, GLfloat T[4][4]);
+	static void aplicarTrans (point3 *obj, int tam, GLfloat T[4][4]);
 
 	void escala(point3 *obj, int tam, GLfloat sx, GLfloat sy, GLfloat sz);
 
