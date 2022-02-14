@@ -186,8 +186,9 @@ int main(int argc, char** argv)
 
 
 	glutInit(&argc,argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(160*7, 90*7);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
+    glEnable(GL_DEPTH_TEST);
+    glutInitWindowSize(160*7, 90*7);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Cubo 3D");
 	Inicializa();
